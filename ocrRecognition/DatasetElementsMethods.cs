@@ -12,7 +12,7 @@ namespace ocrRecognition
     abstract class DatasetElementsMethods
     {
         //Count charater elements for displaying in one string
-        public const byte countCharaterElementsInOneString = 5;
+        public const byte countCharaterElementsInOneString = 4;
 
         //Initialization of ComboBoxs
         public static void InitializeComboBox(ComboBox comboBoxObj)
@@ -105,7 +105,7 @@ namespace ocrRecognition
                 //Adding element in train dataset of images
                 trainTestDataset.Add(item);
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
@@ -132,7 +132,7 @@ namespace ocrRecognition
                 itemBase.SetTypeset(DatasetElements.TypeDataset.unset);
                 mainDataset.Add(itemBase);
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
@@ -151,7 +151,7 @@ namespace ocrRecognition
                 selectedItem.SetCharater(selectedCharater);
                 hashSetObj.Add(selectedItem);
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
@@ -185,7 +185,7 @@ namespace ocrRecognition
                     i++;
                 }
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
@@ -209,7 +209,7 @@ namespace ocrRecognition
                 }
 
             }
-            catch 
+            catch (Exception e)
             {
                 return false;
             }
@@ -221,7 +221,7 @@ namespace ocrRecognition
             {
                 Image loadedImage = Image.FromFile(filename);
             }
-            catch
+            catch (Exception e)
             {
                 return false;
             }
@@ -240,7 +240,7 @@ namespace ocrRecognition
                 pictureBoxObj.Image = new Bitmap(loadedImage, sizeImage);
                 loadedImage?.Dispose();
             }
-            catch
+            catch (Exception e)
             {
                 return false; 
             }
@@ -280,6 +280,7 @@ namespace ocrRecognition
             }
         }
 
+        //Checking: are there unset elements in Hashset
         public static Boolean isUnsetElements(HashSet<DatasetImageElements> hashSetObj) 
         {
             int countOfUnsetElements = hashSetObj.Where(item => item.GetCharater().Equals(DatasetImageElements.Charater.unset)).Count();
@@ -293,9 +294,12 @@ namespace ocrRecognition
             }
         }
 
+        //Making Dataset and saving in txt file
         public static Boolean makeTextDatasetList(HashSet<DatasetImageElements> hashSetObj, String saveFilename)
         {
             StringBuilder str = new StringBuilder();
+            //contain bytecode of image
+            StringBuilder pictureCodeVector = new StringBuilder();
             var groupByCharaters = hashSetObj.GroupBy(x => x.GetCharater()).OrderBy(x => x.Key);
             int countOfKeys = groupByCharaters.Count();
 
@@ -307,7 +311,6 @@ namespace ocrRecognition
                 str.Append("\t");
             }
 
-            //str.Append("ImageCodeVektor");
             foreach (var groupItem in groupByCharaters)
             {
                 str.Append("\t");
@@ -318,20 +321,20 @@ namespace ocrRecognition
                 using (StreamWriter sw = new StreamWriter(saveFilename, false, System.Text.Encoding.Default))
                 {
                     sw.WriteLine(str);
-
+                    
                     foreach (var hashSetElement in hashSetObj)
                     {
                         str.Clear();
-                        String pictureCodeVector = hashSetElement.GetPictureStringFormat();
-                        foreach (var charElem in pictureCodeVector) 
+                        pictureCodeVector.Clear();
+                        pictureCodeVector.Append(hashSetElement.GetPictureStringFormat());
+
+                        int numOfPixels = pictureCodeVector.Length;
+                        for (int i = 0; i < numOfPixels; i++)
                         {
-                            str.Append(charElem);
+                            str.Append(pictureCodeVector[i]);
                             str.Append("\t");
                         }
 
-                        
-                        //str.Append(hashSetElement.GetPictureStringFormat());
-                        //str.Append("\t");
                         foreach (var groupItem in groupByCharaters)
                         {
                             if (hashSetElement.GetCharater().Equals(groupItem.Key))

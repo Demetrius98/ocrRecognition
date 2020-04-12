@@ -234,6 +234,7 @@ namespace ocrRecognition
 
                     //Selected item in Train listBox
                     listBoxTrainDataset.SelectedIndex = selectedIndexItem;
+                    
                 }
             }
         }
@@ -252,7 +253,7 @@ namespace ocrRecognition
                 //Loading image in PictureBox
                 DatasetElementsMethods.loadImageInPictureBox(imageDatasetTrain.ElementAt(selectedItemIndex).GetFilename(), pictureBoxPreTrain);
 
-                listBoxTrainDataset.SelectedIndex = selectedItemIndex;
+                //listBoxTrainDataset.SelectedIndex = selectedItemIndex;
             }
             
         }
@@ -271,8 +272,7 @@ namespace ocrRecognition
                 //Loading image in PictureBox
                 DatasetElementsMethods.loadImageInPictureBox(imageDatasetTest.ElementAt(selectedItemIndex).GetFilename(), pictureBoxPreTest);
 
-
-                listBoxTestDataset.SelectedIndex = selectedItemIndex;
+                //listBoxTestDataset.SelectedIndex = selectedItemIndex;
             }
         }
 

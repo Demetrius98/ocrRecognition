@@ -143,7 +143,7 @@
             this.groupBoxTask1.Size = new System.Drawing.Size(403, 512);
             this.groupBoxTask1.TabIndex = 9;
             this.groupBoxTask1.TabStop = false;
-            this.groupBoxTask1.Text = "Making OCR dataset";
+            this.groupBoxTask1.Text = "Making OCR dataset (please use black color charaters)";
             // 
             // pictureBoxPreTrain
             // 
@@ -382,6 +382,7 @@
             // 
             // buttonTestImageElem
             // 
+            this.buttonTestImageElem.Enabled = false;
             this.buttonTestImageElem.Location = new System.Drawing.Point(12, 198);
             this.buttonTestImageElem.Name = "buttonTestImageElem";
             this.buttonTestImageElem.Size = new System.Drawing.Size(231, 42);
@@ -392,6 +393,7 @@
             // labelOpenDll
             // 
             this.labelOpenDll.AutoSize = true;
+            this.labelOpenDll.Enabled = false;
             this.labelOpenDll.Location = new System.Drawing.Point(12, 172);
             this.labelOpenDll.Name = "labelOpenDll";
             this.labelOpenDll.Size = new System.Drawing.Size(32, 13);
@@ -400,6 +402,7 @@
             // 
             // pictureBoxImageElem
             // 
+            this.pictureBoxImageElem.Enabled = false;
             this.pictureBoxImageElem.Location = new System.Drawing.Point(109, 87);
             this.pictureBoxImageElem.Name = "pictureBoxImageElem";
             this.pictureBoxImageElem.Size = new System.Drawing.Size(32, 32);
@@ -408,6 +411,7 @@
             // 
             // buttonOpenDll
             // 
+            this.buttonOpenDll.Enabled = false;
             this.buttonOpenDll.Location = new System.Drawing.Point(12, 139);
             this.buttonOpenDll.Name = "buttonOpenDll";
             this.buttonOpenDll.Size = new System.Drawing.Size(231, 23);
@@ -418,6 +422,7 @@
             // labelOpenTestImage
             // 
             this.labelOpenTestImage.AutoSize = true;
+            this.labelOpenTestImage.Enabled = false;
             this.labelOpenTestImage.Location = new System.Drawing.Point(12, 57);
             this.labelOpenTestImage.Name = "labelOpenTestImage";
             this.labelOpenTestImage.Size = new System.Drawing.Size(32, 13);
@@ -426,6 +431,7 @@
             // 
             // buttonImageElemOpen
             // 
+            this.buttonImageElemOpen.Enabled = false;
             this.buttonImageElemOpen.Location = new System.Drawing.Point(12, 24);
             this.buttonImageElemOpen.Name = "buttonImageElemOpen";
             this.buttonImageElemOpen.Size = new System.Drawing.Size(231, 23);
